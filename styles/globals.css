@@ -1,26 +1,32 @@
-html,
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@layer components {
+  .padding {
+    @apply py-4 px-4 sm:px-8 xl:px-32;
   }
-  body {
-    color: white;
-    background: black;
-  }
+}
+
+.card {
+  background: linear-gradient(
+    105.87deg,
+    rgba(255, 255, 255, 0.21) 3.04%,
+    rgba(255, 255, 255, 0.06) 100.02%
+  );
+  backdrop-filter: blur(40px);
+  border-radius: 13px;
+  border: 2px solid;
+  border-image-source: linear-gradient(
+    95.35deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0) 48.97%,
+    #ffffff 100%
+  );
 }
