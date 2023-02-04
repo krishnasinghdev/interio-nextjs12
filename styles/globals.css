@@ -12,7 +12,9 @@ body {
   .padding {
     @apply py-4 px-4 sm:px-8 xl:px-32;
   }
+  
 }
+
 
 .card {
   background: linear-gradient(
@@ -29,4 +31,7 @@ body {
     rgba(255, 255, 255, 0) 48.97%,
     #ffffff 100%
   );
+}
+.start2 {
+  grid-column-start: 2!important;
 }

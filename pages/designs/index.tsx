@@ -14,7 +14,7 @@ const App: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Link href={'/'} className='text-primary bg-dark' >to go home</Link>
-      <h1 className='text-3xl font-bold underline'>from app</h1>
+      <h1 className='text-3xl font-bold underline'>from designs</h1>
     </>
   );
 };
