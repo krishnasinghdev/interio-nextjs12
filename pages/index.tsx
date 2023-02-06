@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   const router = useRouter();
 
   const [windowSize, setWindowSize] = useState<number>(750);
-  const [card, setCard] = useState<Array<number>>([1, 2, 3, 4, 5, 6]);
+  const [card, setCard] = useState<Array<number>>([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
   useEffect(() => {
     function handleResize() {
@@ -176,11 +176,11 @@ const Home: NextPage = () => {
       </p>
 
       <div className='my-16 grid grid-cols-5 justify-items-start'>
-        <div className='hidden  bg-primary lg:col-span-2 lg:block '>
-          <Image src={'/saly.png'} height={300} width={300} alt={'saly'} />{' '}
+        <div className='hidden lg:col-span-2 lg:block '>
+          <Image src={'/saly.png'} height={500} width={500} alt={'saly'} />
         </div>
         <div className='padding col-span-5 mr-4 sm:mr-8 lg:col-span-3 xl:mr-32'>
-          <h1 className='pt-16 text-4xl font-bold uppercase   text-gray'>
+          <h1 className='pt-8 text-4xl font-bold uppercase   text-gray'>
             WHAT OUR
             <span className='text-primary'> USERS</span>
             <br /> SAY ABOUT US

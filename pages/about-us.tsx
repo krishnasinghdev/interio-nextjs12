@@ -38,14 +38,14 @@ const About: NextPage = () => {
             <h2 className='mt-8 pb-2 font-semibold tracking-wider text-white'>
               Rajyavardhan Singh
             </h2>
-            <p className='text-gray'>Front-end dev & UI/UX</p>
+            <p className='text-gray'> Co-founder & UI/UX Designer</p>
           </div>
           <div>
             <Image src={'/p2.png'} alt='person' height={200} width={200} />
             <h2 className='mt-8 pb-2 font-semibold tracking-wider text-white'>
               Krishna Singh
             </h2>
-            <p className='text-gray'>Full-Stack Developer</p>
+            <p className='text-gray'>Co-founder & Full-Stack Developer</p>
           </div>
         </section>
       </main>

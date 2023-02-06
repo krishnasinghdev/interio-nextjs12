@@ -15,7 +15,6 @@ body {
   
 }
 
-
 .card {
   background: linear-gradient(
     105.87deg,
@@ -34,4 +33,11 @@ body {
 }
 .start2 {
   grid-column-start: 2!important;
+}
+
+.bluebg{
+  background: linear-gradient(180deg, #B9DDEA 0%, #C8E3D6 100%);
+}
+.cborder{
+ border:  1px solid rgba(255, 255, 255, 0.17);;
 }
