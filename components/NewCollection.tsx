@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const NewCollection = () => {
   return (
-    <section className='w-1/2 rounded bg-[#0F0F0F] p-8 '>
+    <section className='w-1/2 rounded bg-[#0F0F0F] p-8 m-auto'>
       <h1 className='text-lg font-bold text-white '>New Collection</h1>
       <p className='text-sm text-gray'>
         Create a new collection of designs to get inspired

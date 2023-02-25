@@ -5,9 +5,14 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { CgMenuRightAlt } from 'react-icons/cg';
 import { MdCancelPresentation } from 'react-icons/md';
+import Modal  from './modal';
+import Signin from './Signin';
+import Signup from './Signin';
 const Navbar = () => {
   const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
+  const [showSignin, setShowSignin] = useState(false);
 
   return (
     <>
@@ -60,10 +65,16 @@ const Navbar = () => {
             </Link>
           </div>
           <div className='flex justify-between gap-4 text-lg '>
-            <button className='sm:rounded-full sm:bg-primary sm:py-1 sm:px-6 '>
+            <button
+              className='sm:rounded-full sm:bg-primary sm:py-1 sm:px-6 '
+              onClick={() => setShowSignup(true)}
+            >
               Sign up
             </button>
-            <button className='sm:rounded-full sm:border-2 sm:border-primary sm:py-1 sm:px-6 sm:text-primary '>
+            <button
+              className='sm:rounded-full sm:border-2 sm:border-primary sm:py-1 sm:px-6 sm:text-primary '
+              onClick={() => setShowSignin(true)}
+            >
               Sign in
             </button>
             {showMenu ? (
@@ -127,6 +138,17 @@ const Navbar = () => {
             About us
           </Link>
         </div>
+      )}
+
+      {showSignup && (
+        <Modal onClick={() => setShowSignup(false)} >
+          <Signup onClick={() => setShowSignup(false)} />
+        </Modal>
+      )}
+      {showSignup && (
+        <Modal onClick={() => setShowSignin(false)}>
+          <Signin onClick={() => setShowSignup(false)}/>
+        </Modal>
       )}
     </>
   );
