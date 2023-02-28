@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Layout from '../Layout';
 
 const user = () => {
@@ -39,11 +38,11 @@ const user = () => {
           <h1 className='text-white'>Work History</h1>
           <p className='text-primary'>Edit Preference</p>
         </div>
-        <div className='flex mb-2 items-center justify-between text-sm text-gray'>
+        <div className='mb-2 flex items-center justify-between text-sm text-gray'>
           <h1 className=''>Interior Design Lead at Xyz Agency</h1>
           <p className=''>2022 - Present</p>
         </div>
-        <div className='flex mb-2 items-center justify-between text-sm text-gray'>
+        <div className='mb-2 flex items-center justify-between text-sm text-gray'>
           <h1 className=''>Junior Design Lead at Xyz Agency</h1>
           <p className=''>2019 - 2022</p>
         </div>
@@ -52,11 +51,11 @@ const user = () => {
           <h1 className='text-white'>Looking For</h1>
           <p className='text-primary'>Edit Preference</p>
         </div>
-        <div className='flex mb-2 items-center justify-between text-sm text-gray'>
+        <div className='mb-2 flex items-center justify-between text-sm text-gray'>
           <h1 className=''>Interior Design Lead at Xyz Agency</h1>
           <p className=''>2022 - Present</p>
         </div>
-        <div className='flex mb-2 items-center justify-between text-sm text-gray'>
+        <div className='mb-2 flex items-center justify-between text-sm text-gray'>
           <h1 className=''>Junior Design Lead at Xyz Agency</h1>
           <p className=''>2019 - 2022</p>
         </div>

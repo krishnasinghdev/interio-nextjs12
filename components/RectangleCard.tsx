@@ -1,8 +1,19 @@
 import Image from 'next/image';
+import { useDispatch } from 'react-redux';
+import { toggleModal } from '../context/theme';
+
 const RectangleCard = () => {
+  const dispatch = useDispatch();
   return (
-    <div className='padding z-20 mx-auto md:flex hidden w-[85%] py-8 relative -bottom-14 lg:w-[65%] items-center  justify-between rounded-md bg-black text-center text-white '>
-      <p>Sign up</p>
+    <div className='padding relative -bottom-14 z-10 mx-auto hidden w-[85%] items-center justify-between rounded-md bg-black  py-8 text-center text-white md:flex lg:w-[65%] '>
+      <button
+        className=''
+        onClick={() =>
+          dispatch(toggleModal({ showModal: true, modalType: 'signin' }))
+        }
+      >
+        Sign in
+      </button>
       <p className='text-sm'>
         Click the button & fill in the details to <br /> sign up to the xyz
         community.

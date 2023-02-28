@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { BsFillPlayFill } from 'react-icons/bs';
 
 const Hero = () => {
@@ -12,17 +13,17 @@ const Hero = () => {
           Discover a community of interior designers on Xyz. <br /> Post your
           works or get inspired by others
         </p>
-        <div className='mt-4 flex items-center gap-4 '>
-          <button className='rounded-full bg-dark py-2 px-4'>
+        <button className='mt-4 flex items-center gap-4 '>
+          <Link href={'/designs'} className='rounded-full bg-dark py-2 px-4'>
             Explore Designs
-          </button>
+          </Link>
           <p className='flex items-center font-bold text-dark '>
-            <button className='mr-2  rounded-full bg-[#1B1A20] p-2'>
+            <span className='mr-2  rounded-full bg-[#1B1A20] p-2'>
               <BsFillPlayFill className='text-2xl text-primary' />
-            </button>
+            </span>
             View Demo
           </p>
-        </div>
+        </button>
       </div>
       <div className='col-span-4 hidden h-[90vh] items-center justify-start bg-[#1B1A20] lg:flex'>
         <Image

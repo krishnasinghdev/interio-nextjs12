@@ -1,8 +1,17 @@
 import Head from 'next/head';
 import DesignList from '../../components/DesignList';
 import SideLayout from '../../components/SideLayout';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  isLogin as loginStatus, 
+  toggleModal,
+} from '../../context/theme';
+import Link from 'next/link';
 
 export default function Designs() {
+  const dispatch = useDispatch();
+  const isLogin = useSelector<Boolean>(loginStatus);
+
   return (
     <SideLayout>
       <Head>
@@ -13,8 +22,30 @@ export default function Designs() {
       <div className='flex items-center justify-between'>
         <h1 className='font-bold tracking-wider'>Interio</h1>
         <p className=''>
-          <button className='mr-4 rounded bg-primary py-2 px-4'>Sign up</button>
-          <button className='rounded bg-trans py-2 px-4'>Sign in</button>
+          {isLogin ? (
+            <Link
+              href='/designs/upload'
+              className='mr-4 rounded bg-primary py-2 px-4'
+              // onClick={() => dispatch(toggleSignup(true))}
+            >
+              Upload Shot
+            </Link>
+          ) : (
+            <>
+              <button
+                className='mr-4 rounded bg-primary py-2 px-4'
+                onClick={() => dispatch( dispatch(toggleModal({ showModal: true, modalType: 'signup' })))}
+              >
+                Sign up
+              </button>
+              <button
+                className='rounded bg-trans py-2 px-4'
+                onClick={() => dispatch( dispatch(toggleModal({ showModal: true, modalType: 'signin' })))}
+              >
+                Sign in
+              </button>
+            </>
+          )}
         </p>
       </div>
       {/* SEARCH + TAGS */}

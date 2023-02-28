@@ -1,6 +1,7 @@
 import React from 'react';
 import SideLayout from '../../../components/SideLayout';
 import Image from 'next/image';
+
 const edit = () => {
   return (
     <SideLayout>

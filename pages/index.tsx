@@ -1,5 +1,4 @@
-import type { NextPage } from 'next';
-import clsx from 'clsx';
+import type { NextPage } from 'next'; 
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -7,7 +6,6 @@ import { useRouter } from 'next/router';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import RectangleCard from '../components/RectangleCard';
-import { BsFillPlayFill } from 'react-icons/bs';
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -23,7 +21,7 @@ const Home: NextPage = () => {
     if (windowSize >= 768) setCard([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     handleResize();
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [windowSize]);
 
   return (<>
     <Navbar />
@@ -77,7 +75,7 @@ const Home: NextPage = () => {
       </p>
 
       <div className='padding py-16 text-2xl sm:text-4xl'>
-        <div className='group  flex items-center justify-between border-y border-gray p-4 hover:cursor-pointer hover:bg-[#292929]  '>
+        <Link href='/designs/modern' className='group  flex items-center justify-between border-y border-gray p-4 hover:cursor-pointer hover:bg-[#292929]  '>
           <h3 className='text-gray group-hover:text-white sm:my-2 '>
             Modern Designs
           </h3>
@@ -88,8 +86,8 @@ const Home: NextPage = () => {
             width={50}
             className='hidden bg-primary  p-2 md:group-hover:block '
           />
-        </div>
-        <div className='group flex items-center justify-between border-y border-gray p-4 hover:cursor-pointer hover:bg-[#292929] '>
+        </Link>
+        <Link href='/designs/minimal'  className='group flex items-center justify-between border-y border-gray p-4 hover:cursor-pointer hover:bg-[#292929] '>
           <h3 className=' text-gray group-hover:text-white sm:my-2 '>
             Minimal Designs
           </h3>
@@ -100,8 +98,8 @@ const Home: NextPage = () => {
             width={50}
             className='hidden bg-primary p-2   md:group-hover:block '
           />
-        </div>
-        <div className='group flex items-center justify-between border-y border-gray p-4 hover:cursor-pointer hover:bg-[#292929]   '>
+        </Link>
+        <Link href='/designs/space-saving'  className='group flex items-center justify-between border-y border-gray p-4 hover:cursor-pointer hover:bg-[#292929]   '>
           <h3 className='text-gray group-hover:text-white sm:my-2 '>
             Space Saving
           </h3>
@@ -112,8 +110,8 @@ const Home: NextPage = () => {
             width={50}
             className='hidden bg-primary p-2   md:group-hover:block '
           />
-        </div>
-        <div className='group flex items-center justify-between border-y  border-gray p-4 hover:cursor-pointer hover:bg-[#292929] '>
+        </Link>
+        <Link href='/designs/luxurious'  className='group flex items-center justify-between border-y  border-gray p-4 hover:cursor-pointer hover:bg-[#292929] '>
           <h3 className='text-gray group-hover:text-white sm:my-2 '>
             Luxurious Designs
           </h3>
@@ -124,7 +122,7 @@ const Home: NextPage = () => {
             width={50}
             className='hidden bg-primary p-2  md:group-hover:block '
           />
-        </div>
+        </Link>
       </div>
 
       {/* WEBSITE TEMPLATE IMAGES */}
@@ -170,9 +168,9 @@ const Home: NextPage = () => {
         ))}
       </div>
       <p className='mt-6 text-center border-b pb-16 w-3/4 m-auto border-gray'>
-        <button className='rounded-md bg-primary py-2 px-8 font-semibold text-black'>
+        <Link href={'/designs'} className='rounded-md bg-primary py-2 px-8 font-semibold text-black'>
           SEE MORE
-        </button>
+        </Link>
       </p>
 
       <div className='my-16 grid grid-cols-5 justify-items-start'>
