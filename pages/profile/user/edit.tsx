@@ -2,7 +2,7 @@ import React from 'react';
 import SideLayout from '../../../components/SideLayout';
 import Image from 'next/image';
 
-const edit = () => {
+const Edit = () => {
   return (
     <SideLayout>
       <div className='flex items-center justify-between '>
@@ -106,4 +106,4 @@ const edit = () => {
   );
 };
 
-export default edit;
+export default Edit;

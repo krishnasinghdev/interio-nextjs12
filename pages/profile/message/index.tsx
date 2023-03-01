@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { isLogin as loginStatus } from '../../../context/theme';
 import { useSelector } from 'react-redux';
 
-function index() {
+function Message() {
   const isLogin = useSelector<Boolean>(loginStatus);
 
   return (
@@ -77,4 +77,4 @@ function index() {
   );
 }
 
-export default index;
+export default Message;

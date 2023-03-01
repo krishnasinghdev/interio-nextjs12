@@ -2,7 +2,7 @@ import React from 'react';
 import DesignList from '../../components/DesignList';
 import Layout from './Layout';
 
-const index = () => {
+const Profile = () => {
   return (
     <Layout>
       <DesignList />
@@ -10,4 +10,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Profile;

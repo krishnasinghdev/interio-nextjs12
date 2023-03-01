@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  },);
 
   return (
     <>

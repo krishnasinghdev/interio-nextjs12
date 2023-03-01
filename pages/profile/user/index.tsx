@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../Layout';
 
-const user = () => {
+const User = () => {
   return (
     <Layout>
       <div className='my-8'>
@@ -64,4 +64,4 @@ const user = () => {
   );
 };
 
-export default user;
+export default User;
