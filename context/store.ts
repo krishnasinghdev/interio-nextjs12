@@ -12,6 +12,7 @@ export const store = () =>
 export const wrapper = createWrapper(store);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
+// @ts-ignore
 export type RootState = ReturnType<typeof store['getState']>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 // export type AppDispatch = typeof store;
