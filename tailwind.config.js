@@ -17,11 +17,17 @@ module.exports = {
         'light': 'rgba(0,0,0,0.46)',
         'lighter': 'rgba(0,0,0,0.09)',
         'trans': 'rgba(255,255,255,0.18)',
-      }
+      },
+      scrollbar: { 
+        thumb: 'rgba(114, 112, 255, 1)',
+        track: 'rgba(255,255,255,0.18)',
+      },
     },
     backgroundImage: {
       'musicbg': "url('/musicbg.png')",
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 }

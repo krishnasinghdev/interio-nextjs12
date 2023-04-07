@@ -13,7 +13,15 @@ const nextConfig = {
     BUCKET_ACCESS_KEY: 'AKIA2VTP633MZGQPDDHZ',
     BUCKET_REGION: 'ap-south -1',
     BUCKET_NAME: 'interio',
-  }
+  }, images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '', 
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig

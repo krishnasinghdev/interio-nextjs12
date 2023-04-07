@@ -12,19 +12,16 @@ interface Props {
 }
 
 interface IFormInput {
+  name: String;
   email: String;
-  password: String;
 }
 
 const schema = Joi.object({
-  email: Joi.string()
-    .required()
-    .email({ tlds: { allow: false } })
-    .label("Email/Username is required "),
-  password: Joi.string().min(3).required(),
+  name: Joi.string().min(3).required().label("Name is required "),
+  email: Joi.string().required().label("Email is required "),
 });
 
-const Signin = ({ onClick }: Props) => {
+const Invite = ({ onClick }: Props) => {
   const dispatch = useDispatch();
   const [message, setMessage] = useState<String>("");
   const {
@@ -37,17 +34,18 @@ const Signin = ({ onClick }: Props) => {
   const onSubmit: SubmitHandler<IFormInput> = async (val) => {
     setMessage("Loading...");
     try {
-      const { data } = await axios.post(
-        `${process.env.API_URL}/vendor/login`,
-        val
-      );
-      dispatch(
-        setLogin({
-          vendor: data.data.name,
-          v_id: data.data._id,
-          token: data.data.token,
-        })
-      );
+      // const { data } = await axios.post(
+      //   `${process.env.API_URL}/vendor/login`,
+      //   val
+      // );
+      // console.log(data);
+      // dispatch(
+      //   setLogin({
+      //     vendor: data.data.name,
+      //     v_id: data.data._id,
+      //     token: data.data.token,
+      //   })
+      // );
       setMessage("");
       onClick();
     } catch (error) {
@@ -58,9 +56,14 @@ const Signin = ({ onClick }: Props) => {
   return (
     <section className="m-auto w-11/12 rounded bg-[#0F0F0F] p-8 md:w-1/2 ">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-gray">
-          Fill in the below details and sign in to Interio
-        </p>
+        <div>
+          <h1 className="mb-2 text-lg font-semibold text-white">
+            Invite a friend
+          </h1>
+          <p className="text-sm text-gray">
+            Invite a designer to share their work on Dribbble
+          </p>
+        </div>
         <MdOutlineCancelPresentation
           onClick={onClick}
           className="block cursor-pointer text-3xl text-white transition-all hover:scale-105 "
@@ -74,38 +77,38 @@ const Signin = ({ onClick }: Props) => {
         className="flex flex-col bg-[#0F0F0F] text-gray placeholder:text-sm"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <label htmlFor="email" className="mt-4 block">
-          Username
+        <label htmlFor="email" className="mt-2 block">
+          Name
         </label>
         <input
           className="mt-2 rounded bg-[#1D1D1D] px-4  py-2"
-          type="email"
+          type="text"
           placeholder="Type here..."
           autoComplete="true"
+          {...register("name")}
+        />
+        <span className="mt-1 text-xs text-red-400">
+          {errors.name?.message}
+        </span>
+        <label htmlFor="password" className="mt-4 block">
+          Email Address
+        </label>
+        <input
+          type="email"
+          className="mt-2 rounded bg-[#1D1D1D] px-4  py-2"
+          placeholder="Type here..."
           {...register("email")}
+          autoComplete="true"
         />
         <span className="mt-1 text-xs text-red-400">
           {errors.email?.message}
         </span>
-        <label htmlFor="password" className="mt-4 block">
-          Password
-        </label>
-        <input
-          type="password"
-          className="mt-2 rounded bg-[#1D1D1D] px-4  py-2"
-          placeholder="Type here..."
-          {...register("password")}
-          autoComplete="true"
-        />
-        <span className="mt-1 text-xs text-red-400">
-          {errors.password?.message}
-        </span>
-        <button className="mt-4 w-full rounded bg-primary p-2 ">
-          {message ? message : "Sign in"}
+        <button className="mt-4 w-full rounded bg-primary p-2 text-white ">
+          {message ? message : "Send Invite"}
         </button>
       </form>
     </section>
   );
 };
 
-export default Signin;
+export default Invite;

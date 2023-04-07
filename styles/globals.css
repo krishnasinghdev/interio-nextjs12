@@ -1,18 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 @layer components {
   .padding {
-    @apply py-4 px-4 sm:px-8 xl:px-32;
+    @apply px-4 py-4 sm:px-8 xl:px-32;
   }
-  
 }
 
 .overlay {
@@ -24,7 +23,20 @@ body {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.overlay {
+  display: block;
+  position: fixed;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 100;
 }
 
@@ -45,12 +57,12 @@ body {
   );
 }
 .start2 {
-  grid-column-start: 2!important;
+  grid-column-start: 2 !important;
 }
 
-.bluebg{
-  background: linear-gradient(180deg, #B9DDEA 0%, #C8E3D6 100%);
+.bluebg {
+  background: linear-gradient(180deg, #b9ddea 0%, #c8e3d6 100%);
 }
-.cborder{
- border:  1px solid rgba(255, 255, 255, 0.17);;
+.cborder {
+  border: 1px solid rgba(255, 255, 255, 0.17);
 }

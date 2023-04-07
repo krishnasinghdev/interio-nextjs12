@@ -4,7 +4,7 @@ import DesignList from "../../components/DesignList";
 import { shotDataArr } from "../../types/shotType";
 import Layout from "./Layout";
 
-const Profile = (shots: shotDataArr) => {
+const tab = (shots: shotDataArr) => {
   return (
     <Layout>
       <DesignList shots={shots} />
@@ -12,17 +12,14 @@ const Profile = (shots: shotDataArr) => {
   );
 };
 
-export default Profile;
+export default tab;
 
 export async function getServerSideProps() {
-  let result = { shots: [] };
-
   const { data } = await axios.get(`${process.env.API_URL}/shot`);
-  if (data?.data) {
-    result = { shots: data.data };
-  }
 
   return {
-    props: result,
+    props: {
+      shots: data?.data,
+    },
   };
 }
