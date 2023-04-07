@@ -69,7 +69,6 @@ export const {
   setLogin,
   setLogout,
   toggleModal,
-  toggleSignin,
 } = themeSlice.actions;
 export const sidebar = (state: RootState) => state.theme.sidebar;
 export const isLogin = (state: RootState) => state.theme.isLogin;
