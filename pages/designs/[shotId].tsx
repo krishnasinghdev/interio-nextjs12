@@ -28,8 +28,8 @@ const ShotId = ({
   const [message, setMessage] = useState<String>('');
 
   const makeChat = async () => {
-    if (localStorage.getItem('v_id')==owner._id) {
-      return alert(`Can't chat to self! `)
+    if (localStorage.getItem('v_id') == owner._id) {
+      return alert(`Can't chat to self! `);
     }
     socket.connect();
     setMessage('Connecting...');
@@ -201,7 +201,13 @@ export async function getServerSideProps({ params }: any) {
     description:
       'Interior design is the art and science of enhancing the interior of a building to achieve a healthier and more aesthetically pleasing environment for the people using the space. An interior designer is someone who plans, researches, coordinates, and manages such enhancement projects.',
     tags: ['Minimal', 'Modern', 'Luxurious'],
-    images: [[Object]],
+    images: [
+      {
+        title: 'Hotel Room',
+        url: 'https://res.cloudinary.com/ds8j4z2nf/image/upload/v1678014721/Interio/l5_z8ydxy.png',
+        _id: '642ed1d9a69faebb7421d583',
+      },
+    ],
     owner: {
       _id: '642ed18ca69faebb7421d57b',
       name: 'Krishna Singh',
@@ -210,7 +216,7 @@ export async function getServerSideProps({ params }: any) {
       following: [],
     },
   };
-  
+
   try {
     const { data } = await axios.get(
       `${process.env.API_URL}/shot/${params.shotId}`
