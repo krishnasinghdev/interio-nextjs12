@@ -1,8 +1,8 @@
-import axios from "axios";
-import React from "react";
-import DesignList from "../../components/DesignList";
-import { shotDataArr } from "../../types/shotType";
-import Layout from "./Layout";
+import axios from 'axios';
+import React from 'react';
+import DesignList from '../../components/DesignList';
+import { shotDataArr } from '../../types/shotType';
+import Layout from './Layout';
 
 const tab = (shots: shotDataArr) => {
   return (
@@ -15,11 +15,17 @@ const tab = (shots: shotDataArr) => {
 export default tab;
 
 export async function getServerSideProps() {
-  const { data } = await axios.get(`${process.env.API_URL}/shot`);
+  let result = { shots: [] };
+  try {
+    const { data } = await axios.get(`${process.env.API_URL}/shot`);
+    if (data?.data) {
+      result.shots = data.data;
+    }
+  } catch (error) {}
 
   return {
     props: {
-      shots: data?.data,
+      shots: result,
     },
   };
 }

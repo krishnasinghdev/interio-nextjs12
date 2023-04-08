@@ -76,7 +76,7 @@ function ChatId({ messageArr, users }: chatProp) {
           message: val.message,
           sender: localStorage.getItem('v_id'),
         },
-      ]);
+      ])
       socket.current.emit('sendMessage', {
         from: localStorage.getItem('v_id'),
         to: reciever?._id,
@@ -158,13 +158,15 @@ export async function getServerSideProps({ query }: any) {
     users: [],
   };
 
-  const { data } = await axios.get(
-    `${process.env.API_URL}/message/${query.ChatId}`
-  );
+  try {
+    const { data } = await axios.get(
+      `${process.env.API_URL}/message/${query.ChatId}`
+    );
+    if (data?.data) {
+      result.messageArr = data.data.messages;
+      result.users = data.data.vendors;
+    }
+  } catch (error) {}
 
-  if (data?.data) {
-    result.messageArr = data.data.messages;
-    result.users = data.data.vendors;
-  }
   return { props: result };
 }
