@@ -16,6 +16,7 @@ import group7 from '../public/Group7.png';
 import group8 from '../public/Group8.png';
 import group9 from '../public/Group9.png';
 import group10 from '../public/Group10.png';
+import { BsFillPlayFill } from 'react-icons/bs';
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -192,7 +193,7 @@ const Home: NextPage = () => {
         <div className='padding grid grid-cols-2 gap-4 md:grid-cols-5'>
           {card.map((_, i) => (
             <div key={i}>
-              <span className=' absolute m-2 rounded-2xl bg-pink-500 px-3 py-1  text-sm'>
+              <span className=' absolute m-2 rounded-2xl bg-pink-500 px-2 py-0 text-white text-sm'>
                 24k
               </span>
               <Image
@@ -202,6 +203,9 @@ const Home: NextPage = () => {
                 alt={'man'}
                 className='rounded hover:cursor-pointer '
               />
+              {/* <span className='relative m-2 rounded-2xl bg-primary px-2 py-0 text-sm'>
+                <BsFillPlayFill className='text-xl text-white' />
+              </span> */}
             </div>
           ))}
         </div>
@@ -258,10 +262,10 @@ const Home: NextPage = () => {
               width={40}
             />
           </Link>
-          <p>
+          <p className='px-2 md:px-6 lg:px-10'>
             Modern Designs | Minimal Designs | Luxurious Designs | Space Saving
-            Designs <br /> Dark themed Designs | Hotel Room Designs Terms &
-            Conditions <br /> Privacy Policy | About us
+            Designs <br /> Dark themed Designs | Hotel Room Designs | Terms &
+            Conditions Privacy Policy | About us
           </p>
           <p>Handcrafted by © XYZ Company 2023</p>
           <p>Made with 💖 </p>

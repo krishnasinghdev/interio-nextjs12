@@ -6,11 +6,17 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  background-color: black;
 }
 
 @layer components {
   .padding {
     @apply px-4 py-4 sm:px-8 xl:px-32;
+  }
+}
+@layer components {
+  .text_size {
+    @apply text-3xl sm:text-xl;
   }
 }
 

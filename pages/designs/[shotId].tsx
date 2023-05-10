@@ -11,7 +11,8 @@ import { shotData } from '../../types/shotType';
 import io from 'socket.io-client';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import { vendor as vd } from '../../context/theme';
+import { vendor as vd, isLogin as loginStatus } from '../../context/theme';
+
 const socket = io(`${process.env.API_URL}`, { autoConnect: false });
 
 const ShotId = ({
@@ -26,6 +27,7 @@ const ShotId = ({
   const router = useRouter();
   const vendor = useSelector(vd);
   const [message, setMessage] = useState<String>('');
+  const isLogin = useSelector<Boolean>(loginStatus);
 
   const makeChat = async () => {
     if (localStorage.getItem('v_id') == owner._id) {
@@ -45,27 +47,69 @@ const ShotId = ({
     });
   };
 
+  const likeHandler = async () => {
+    try {
+      const { data } = await axios.post(
+        `${process.env.API_URL}/shot/like/?shot_id=${router.query.shotId}&v_id=${vendor.v_id}`,
+        {},
+        {
+          headers: {
+            'Authorization ': `Bearer ${vendor.token}`,
+          },
+        }
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const saveHandler = async () => {
+    try {
+      const { data } = await axios.post(
+        `${process.env.API_URL}/shot/save/?shot_id=${router.query.shotId}&v_id=${vendor.v_id}`,
+        {},
+        {
+          headers: {
+            'Authorization ': `Bearer ${vendor.token}`,
+          },
+        }
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <SideLayout>
-      <header className='flex justify-between '>
-        <div className='flex gap-x-4'>
-          <Image
-            src={'/dp.png'}
-            height={40}
-            width={40}
-            alt='man dp'
-            className='rounded-full bg-primary '
-          />
-          <div>
-            <h1>Jane Cooper</h1>
-            <p className='text-xs text-gray'>21 shots uploaded till now</p>
-          </div>
-        </div>
-        <Link href={'/designs/upload'} className='rounded bg-primary px-4 py-2'>
-          Upload Shot
-        </Link>
-      </header>
-      <p className='my-8 w-full border-[0.5px] border-gray' />
+      {/* @ts-ignore */}
+      {isLogin && (
+        <>
+          <header className='flex justify-between '>
+            <div className='flex gap-x-4'>
+              <Image
+                src={'/dp.png'}
+                height={40}
+                width={40}
+                alt='man dp'
+                className='rounded-full bg-primary '
+              />
+              <div>
+                <h1>{vendor.vendor}</h1>
+                <p className='text-xs text-gray'>21 shots uploaded till now</p>
+              </div>
+            </div>
+            <Link
+              href={'/designs/upload'}
+              className='rounded bg-primary px-4 py-2'
+            >
+              Upload Shot
+            </Link>
+          </header>
+          <p className='my-8 w-full border-[0.5px] border-gray' />
+        </>
+      )}
       <div className='mb-8 flex justify-between'>
         <div className='flex gap-x-4'>
           <Image
@@ -81,8 +125,16 @@ const ShotId = ({
           </div>
         </div>
         <div className='flex gap-x-4 '>
-          <button className='cborder rounded bg-trans px-4 py-2'>Save</button>
-          <button className='rounded border border-pink-500 bg-trans px-4 py-2'>
+          <button
+            className='cborder rounded bg-trans px-4 py-2'
+            onClick={saveHandler}
+          >
+            Save
+          </button>
+          <button
+            className='rounded border border-pink-500 bg-trans px-4 py-2'
+            onClick={likeHandler}
+          >
             <Image
               src={'/pheart.png'}
               alt='heart-icon'
@@ -90,12 +142,12 @@ const ShotId = ({
               width={20}
               className='inline'
             />{' '}
-            1.1k
+            Like
           </button>
         </div>
       </div>
       {/* @ts-ignore */}
-      <Image src={images[0].url} alt='bed' height={500} width={1200} />
+      <Image src={images[0].url} alt='bed' height={500} width={1400} />
       <div className='my-8 flex items-center justify-center gap-4'>
         <button className='cborder rounded bg-trans px-4 py-2'>
           <BsChatDots />
@@ -150,14 +202,15 @@ const ShotId = ({
           {message ? message : "Let's chat"}
         </button>
       </div>
-      <div className='flex flex-col gap-y-8 '>
+
+      <div className='flex flex-col gap-y-8 mt-4'>
         <div className='flex justify-between'>
           <p>More from {owner.name}</p>
           <p className='cursor-pointer text-primary hover:underline'>
             View Profile
           </p>
         </div>
-        <div className='flex gap-4'>
+        <div className='flex gap-4 overflow-x-auto '>
           {[1, 2, 3, 4].map((_, i) => (
             <div key={i} className='mb-4'>
               <Link href='/designs/single'>

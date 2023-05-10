@@ -24,7 +24,7 @@ export type messageProp = {
   content: String;
   readBy: String[];
   createdAt: String;
-}
+};
 
 export type vendorType = {
   _id: String;
@@ -32,6 +32,12 @@ export type vendorType = {
   follower: String[];
   following: String[];
   likedShot: String[];
+};
+
+export type reduxVendor = {
+  vendor: String;
+  v_id: String;
+  token: String;
 };
 
 export type chatType = {

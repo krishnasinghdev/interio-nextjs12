@@ -14,13 +14,20 @@ const Profile = (shots: shotDataArr) => {
 
 export default Profile;
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: any) {
   let result = { shots: [] };
 
   try {
-    const { data } = await axios.get(`${process.env.API_URL}/shot`);
+    const { data } = await axios.get(
+      `${process.env.API_URL}/vendor/work`,
+      {
+        headers: {
+          Authorization: `Bearer ${context.req.cookies.token}`,
+        },
+      }
+    );
     if (data?.data) {
-      result.shots = data.data
+      result.shots = data.data;
     }
   } catch (error) {}
 

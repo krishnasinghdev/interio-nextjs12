@@ -1,15 +1,10 @@
-import { MdOutlineCancelPresentation } from "react-icons/md";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setLogin } from "../context/theme";
-
-interface Props {
-  onClick: () => void;
-}
+import ModalHeader from "./ModalHeader";
 
 interface IFormInput {
   name: String;
@@ -21,7 +16,7 @@ const schema = Joi.object({
   email: Joi.string().required().label("Email is required "),
 });
 
-const Invite = ({ onClick }: Props) => {
+const Invite = ({ onClick }: {onClick: () => void;}) => {
   const dispatch = useDispatch();
   const [message, setMessage] = useState<String>("");
   const {
@@ -55,21 +50,11 @@ const Invite = ({ onClick }: Props) => {
 
   return (
     <section className="m-auto w-11/12 rounded bg-[#0F0F0F] p-8 md:w-1/2 ">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="mb-2 text-lg font-semibold text-white">
-            Invite a friend
-          </h1>
-          <p className="text-sm text-gray">
-            Invite a designer to share their work on Dribbble
-          </p>
-        </div>
-        <MdOutlineCancelPresentation
-          onClick={onClick}
-          className="block cursor-pointer text-3xl text-white transition-all hover:scale-105 "
-        />
-      </div>
-      <p className="my-6 w-full border border-gray" />
+        <ModalHeader
+        heading='Invite a friend'
+        onClick={onClick}
+        title='Invite a designer to share their work on Dribbble'
+      />
       {message && (
         <p className="mt-2 text-center text-sm text-red-500">{message}</p>
       )}

@@ -10,7 +10,7 @@ export interface themeState {
   modalFor: string;
   vendor: {
     vendor?: String;
-    V_id?: String;
+    v_id?: String;
     token?: String;
   };
 }
@@ -51,6 +51,7 @@ export const themeSlice = createSlice({
         localStorage.setItem('vendor', vendor);
         localStorage.setItem('token', token);
         localStorage.setItem('v_id', v_id);
+        document.cookie = `token=${token}`
       }
     },
     setLogout: (state) => {

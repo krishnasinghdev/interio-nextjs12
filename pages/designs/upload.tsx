@@ -35,8 +35,8 @@ const Upload = () => {
   });
   const onSubmit: SubmitHandler<IFormInput> = async (val) => {
     setMessage("Uploading...");
-    const shotImage =
-      "https://res.cloudinary.com/ds8j4z2nf/image/upload/v1678014721/Interio/l5_z8ydxy.png";
+    const shotImage = "https://res.cloudinary.com/ds8j4z2nf/image/upload/v1678014724/Interio/bed_j1772k.png"
+      // "https://res.cloudinary.com/ds8j4z2nf/image/upload/v1678014721/Interio/l5_z8ydxy.png";
     try {
       const { data } = await axios.post(
         `${process.env.API_URL}/shot`,

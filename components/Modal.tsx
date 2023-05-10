@@ -6,6 +6,7 @@ import Invite from "./Invite";
 import NewCollection from "./NewCollection";
 import Signin from "./Signin";
 import Signup from "./Signup";
+import EditPassword from "./EditPassword";
 
 interface PortalProps {
   component: String;
@@ -24,7 +25,7 @@ const Modal = ({ component, onClick }: PortalProps) => {
 
   return mounted && ref.current
     ? createPortal(
-        <div className="overlay z-0">
+        <dialog className="overlay z-10">
           {modalFor === "signup" && (
             <Signup
               onClick={() =>
@@ -53,7 +54,14 @@ const Modal = ({ component, onClick }: PortalProps) => {
               }
             />
           )}
-        </div>,
+          {modalFor === "edit-password" && (
+            <EditPassword
+              onClick={() =>
+                dispatch(toggleModal({ showModal: false, modalType: "" }))
+              }
+            />
+          )}
+        </dialog>,
         ref.current
       )
     : null;
