@@ -18,7 +18,7 @@ const DesignList = ({ shots }: { shots: shotData[] }) => {
               height={350}
               quality={100}
               width={370}
-              className="cursor-pointer transition-all hover:scale-105 "
+              className="cursor-pointer transition-all duration-200 hover:scale-105 rounded"
             />
           </Link>
           <div className="flex justify-between px-2 py-2 text-gray">

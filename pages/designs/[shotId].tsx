@@ -147,7 +147,7 @@ const ShotId = ({
           </div>
         </div>
         {/* @ts-ignore */}
-        <Image src={images[0].url} alt="bed" height={500} width={1400} />
+        <Image src={images[0].url} alt="bed" height={500} width={1400} className="rounded"/>
         <div className="my-8 flex items-center justify-center gap-4">
           <button className="cborder rounded bg-trans px-4 py-2">
             <BsChatDots />
@@ -222,7 +222,7 @@ const ShotId = ({
                     height={250}
                     quality={100}
                     width={270}
-                    className="cursor-pointer transition-all hover:scale-105 "
+                    className="cursor-pointer transition-all duration-200 hover:scale-105 rounded"
                   />
                 </Link>
                 <div className="flex justify-between px-4 py-2 text-gray">

@@ -116,7 +116,7 @@ const Navbar = () => {
       </header>
 
       {showMenu && (
-        <div className="absolute top-0 z-10 flex h-auto w-screen flex-col items-center gap-4 bg-dark py-10 text-white transition-all ">
+        <div className="absolute top-0 z-10 flex h-auto w-screen flex-col items-center gap-4 duration-200 bg-dark py-10 text-white transition-all ">
           <Link
             href="/"
             className={clsx(

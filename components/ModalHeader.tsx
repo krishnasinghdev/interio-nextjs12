@@ -16,7 +16,7 @@ export default function ModalHeader({ onClick, title, heading }: Props) {
         </div>
         <MdOutlineCancelPresentation
           onClick={onClick}
-          className="block cursor-pointer pl-2 text-5xl text-white transition-all hover:scale-105 md:text-4xl "
+          className="block cursor-pointer pl-2 text-5xl text-white duration-200 transition-all hover:scale-105 md:text-4xl "
         />
       </div>
       <p className="my-6 w-full border border-gray" />
