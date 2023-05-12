@@ -1,10 +1,10 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { joiResolver } from '@hookform/resolvers/joi';
-import Joi from 'joi';
-import axios from 'axios';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import ModalHeader from './ModalHeader';
+import { useForm, SubmitHandler } from "react-hook-form";
+import { joiResolver } from "@hookform/resolvers/joi";
+import Joi from "joi";
+import axios from "axios";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import ModalHeader from "./ModalHeader";
 
 interface IFormInput {
   oldPassword: String;
@@ -17,12 +17,12 @@ const schema = Joi.object({
   oldPassword: Joi.string().min(3).required(),
   email: Joi.string().min(3).required(),
   newPassword: Joi.string().min(3).required(),
-  cnewPassword: Joi.ref('newPassword'),
+  cnewPassword: Joi.ref("newPassword"),
 });
 
-const EditPassword = ({ onClick }: {onClick: () => void;}) => {
+const EditPassword = ({ onClick }: { onClick: () => void }) => {
   const dispatch = useDispatch();
-  const [message, setMessage] = useState<String>('');
+  const [message, setMessage] = useState<String>("");
   const {
     register,
     handleSubmit,
@@ -31,89 +31,86 @@ const EditPassword = ({ onClick }: {onClick: () => void;}) => {
     resolver: joiResolver(schema),
   });
   const onSubmit: SubmitHandler<IFormInput> = async (val) => {
-    setMessage('Updating...');
+    setMessage("Updating...");
     try {
       const { data } = await axios.post(
         `${process.env.API_URL}/vendor/update-password`,
         val,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       );
       console.log(data);
-      setMessage('');
+      setMessage("");
       onClick();
     } catch (error) {
-      setMessage('Some Error!');
+      setMessage("Some Error!");
     }
   };
 
   return (
-    <section className='m-auto w-11/12 rounded bg-[#0F0F0F] p-8 md:w-1/2 '>
-      <ModalHeader
-        onClick={onClick}
-        title='Update your password'
-      />
+    <section className="m-auto w-11/12 rounded bg-[#0F0F0F] p-8 md:w-1/2 ">
+      <ModalHeader onClick={onClick} title="Update your password" />
       {message && (
-        <p className='mt-2 text-center text-sm text-red-500'>{message}</p>
+        <p className="mt-2 text-center text-sm text-red-500">{message}</p>
       )}
       <form
-        className='flex flex-col bg-[#0F0F0F] text-gray placeholder:text-sm'
+        className="flex flex-col bg-[#0F0F0F] text-gray placeholder:text-sm"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <label htmlFor='email' className='mt-4 block'>
+        <label htmlFor="email" className="mt-4 block">
           Email
         </label>
         <input
-          className='mt-2 rounded bg-[#1D1D1D] px-4  py-2'
-          type='email'
-          placeholder='Type here...'
-          autoComplete='true'
-          {...register('email')}
+          className="mt-2 rounded bg-[#1D1D1D] px-4  py-2"
+          type="email"
+          placeholder="Type here..."
+          autoComplete="true"
+          {...register("email")}
         />
-        <label htmlFor='oldPassword' className='mt-4 block'>
+        <label htmlFor="oldPassword" className="mt-4 block">
           Current Password
         </label>
         <input
-          className='mt-2 rounded bg-[#1D1D1D] px-4  py-2'
-          type='password'
-          placeholder='Type here...'
-          autoComplete='true'
-          {...register('oldPassword')}
+          className="mt-2 rounded bg-[#1D1D1D] px-4  py-2"
+          type="password"
+          placeholder="Type here..."
+          autoComplete="true"
+          {...register("oldPassword")}
         />
-        <span className='mt-1 text-xs text-red-400'>
+        <span className="mt-1 text-xs text-red-400">
           {errors.oldPassword?.message}
         </span>
-        <label htmlFor='newPassword' className='mt-4 block'>
+        <label htmlFor="newPassword" className="mt-4 block">
           New Password
         </label>
         <input
-          type='password'
-          className='mt-2 rounded bg-[#1D1D1D] px-4  py-2'
-          placeholder='Type here...'
-          {...register('newPassword')}
-          autoComplete='true'
+          type="password"
+          className="mt-2 rounded bg-[#1D1D1D] px-4  py-2"
+          placeholder="Type here..."
+          {...register("newPassword")}
+          autoComplete="true"
         />
-        <span className='mt-1 text-xs text-red-400'>
+        <span className="mt-1 text-xs text-red-400">
           {errors.newPassword?.message}
         </span>
-        <label htmlFor='cnewPassword' className='mt-4 block'>
+        <label htmlFor="cnewPassword" className="mt-4 block">
           Confirm Password
         </label>
         <input
-          type='password'
-          className='mt-2 rounded bg-[#1D1D1D] px-4  py-2'
-          placeholder='Type here...'
-          {...register('cnewPassword')}
-          autoComplete='true'
+          type="password"
+          className="mt-2 rounded bg-[#1D1D1D] px-4  py-2"
+          placeholder="Type here..."
+          {...register("cnewPassword")}
+          autoComplete="true"
         />
-        <span className='mt-1 text-xs text-red-400'>
+        <span className="mt-1 text-xs text-red-400">
           {errors.cnewPassword?.message}
         </span>
-        <button className='mt-4 w-full rounded bg-primary p-2 '>
-          {message ? message : 'Update Password'}
+        <button className="mt-4 w-full rounded bg-primary p-2 ">
+          {message ? message : "Update Password"}
         </button>
       </form>
     </section>

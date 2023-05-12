@@ -1,8 +1,8 @@
-import axios from 'axios';
-import React from 'react';
-import DesignList from '../../components/DesignList';
-import { shotData } from '../../types/shotType';
-import Layout from './Layout';
+import axios from "axios";
+import React from "react";
+import DesignList from "../../components/DesignList";
+import { shotData } from "../../types/shotType";
+import Layout from "./Layout";
 
 const tab = ({ shots }: { shots: shotData[] }) => {
   return (
@@ -10,7 +10,7 @@ const tab = ({ shots }: { shots: shotData[] }) => {
       {shots.length > 0 ? (
         <DesignList shots={shots} />
       ) : (
-        <p className='text-center text-gray'>Nothing to show!</p>
+        <p className="text-center text-gray">Nothing to show!</p>
       )}
     </Layout>
   );

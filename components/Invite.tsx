@@ -16,7 +16,7 @@ const schema = Joi.object({
   email: Joi.string().required().label("Email is required "),
 });
 
-const Invite = ({ onClick }: {onClick: () => void;}) => {
+const Invite = ({ onClick }: { onClick: () => void }) => {
   const dispatch = useDispatch();
   const [message, setMessage] = useState<String>("");
   const {
@@ -50,10 +50,10 @@ const Invite = ({ onClick }: {onClick: () => void;}) => {
 
   return (
     <section className="m-auto w-11/12 rounded bg-[#0F0F0F] p-8 md:w-1/2 ">
-        <ModalHeader
-        heading='Invite a friend'
+      <ModalHeader
+        heading="Invite a friend"
         onClick={onClick}
-        title='Invite a designer to share their work on Dribbble'
+        title="Invite a designer to share their work on Dribbble"
       />
       {message && (
         <p className="mt-2 text-center text-sm text-red-500">{message}</p>

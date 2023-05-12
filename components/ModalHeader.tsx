@@ -1,4 +1,4 @@
-import { MdOutlineCancelPresentation } from 'react-icons/md';
+import { MdOutlineCancelPresentation } from "react-icons/md";
 type Props = {
   onClick: () => void;
   title: string;
@@ -7,19 +7,19 @@ type Props = {
 export default function ModalHeader({ onClick, title, heading }: Props) {
   return (
     <>
-      <div className='flex items-center justify-between'>
+      <div className="flex items-center justify-between">
         <div>
           {heading && (
-            <h1 className='text-lg font-bold text-white '>{heading}</h1>
+            <h1 className="text-lg font-bold text-white ">{heading}</h1>
           )}
-          <p className='text-sm text-gray'>{title}</p>
+          <p className="text-sm text-gray">{title}</p>
         </div>
         <MdOutlineCancelPresentation
           onClick={onClick}
-          className='block cursor-pointer pl-2 text-5xl text-white transition-all hover:scale-105 md:text-4xl '
+          className="block cursor-pointer pl-2 text-5xl text-white transition-all hover:scale-105 md:text-4xl "
         />
       </div>
-      <p className='my-6 w-full border border-gray' />
+      <p className="my-6 w-full border border-gray" />
     </>
   );
 }
