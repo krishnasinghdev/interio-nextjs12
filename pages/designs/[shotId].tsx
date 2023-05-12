@@ -16,14 +16,12 @@ import { vendor as vd, isLogin as loginStatus } from '../../context/theme';
 const socket = io(`${process.env.API_URL}`, { autoConnect: false });
 
 const ShotId = ({
-  title,
-  category,
-  description,
-  tags,
-  images,
-  owner,
-  _id,
-}: shotData) => {
+  shot: { title, category, description, tags, images, owner, _id },
+  moreShot,
+}: {
+  shot: shotData;
+  moreShot: shotData[];
+}) => {
   const router = useRouter();
   const vendor = useSelector(vd);
   const [message, setMessage] = useState<String>('');
@@ -123,7 +121,7 @@ const ShotId = ({
             />
             <div>
               <h1>{title}</h1>
-              <p className='text-xs text-gray'>{owner.name}</p>
+              <p className='text-xs text-gray'>{owner?.name}</p>
             </div>
           </div>
           <div className='flex gap-x-4 '>
@@ -215,11 +213,11 @@ const ShotId = ({
             </p>
           </div>
           <div className='flex gap-4 overflow-x-auto '>
-            {[1, 2, 3, 4].map((_, i) => (
+            {moreShot.map((shot, i) => (
               <div key={i} className='mb-4'>
-                <Link href='/designs/single'>
+                <Link href={`/designs/${shot._id}`}>
                   <Image
-                    src={`/l${i + 1}.png`}
+                    src={`${shot.images[0].url}`}
                     alt='l1img'
                     height={250}
                     quality={100}
@@ -253,40 +251,70 @@ export default ShotId;
 
 export async function getServerSideProps({ params }: any) {
   let result = {
-    _id: '642ed1d9a69faebb7421d582',
-    title: 'Hotel Room',
-    category: 'room',
-    description:
-      'Interior design is the art and science of enhancing the interior of a building to achieve a healthier and more aesthetically pleasing environment for the people using the space. An interior designer is someone who plans, researches, coordinates, and manages such enhancement projects.',
-    tags: ['Minimal', 'Modern', 'Luxurious'],
-    images: [
+    shot: {
+      _id: '642ed1d9a69faebb7421d582',
+      title: 'Hotel Room',
+      category: 'room',
+      description:
+        'Interior design is the art and science of enhancing the interior of a building to achieve a healthier and more aesthetically pleasing environment for the people using the space. An interior designer is someone who plans, researches, coordinates, and manages such enhancement projects.',
+      tags: ['Minimal', 'Modern', 'Luxurious'],
+      images: [
+        {
+          title: 'Hotel Room',
+          url: 'https://res.cloudinary.com/ds8j4z2nf/image/upload/v1678014721/Interio/l5_z8ydxy.png',
+          _id: '642ed1d9a69faebb7421d583',
+        },
+      ],
+      owner: {
+        _id: '642ed18ca69faebb7421d57b',
+        name: 'Krishna Singh',
+        email: 'singhks0054@gmail.com',
+        follower: [],
+        following: [],
+      },
+    },
+    moreShot: [
       {
+        _id: '642ed1d9a69faebb7421d582',
         title: 'Hotel Room',
-        url: 'https://res.cloudinary.com/ds8j4z2nf/image/upload/v1678014721/Interio/l5_z8ydxy.png',
-        _id: '642ed1d9a69faebb7421d583',
+        category: 'room',
+        description:
+          'Interior design is the art and science of enhancing the interior of a building to achieve a healthier and more aesthetically pleasing environment for the people using the space. An interior designer is someone who plans, researches, coordinates, and manages such enhancement projects.',
+        tags: ['Minimal', 'Modern', 'Luxurious'],
+        images: [
+          {
+            title: 'Hotel Room',
+            url: 'https://res.cloudinary.com/ds8j4z2nf/image/upload/v1678014721/Interio/l5_z8ydxy.png',
+            _id: '642ed1d9a69faebb7421d583',
+          },
+        ],
+        owner: {
+          _id: '642ed18ca69faebb7421d57b',
+          name: 'Krishna Singh',
+          email: 'singhks0054@gmail.com',
+          follower: [],
+          following: [],
+        },
       },
     ],
-    owner: {
-      _id: '642ed18ca69faebb7421d57b',
-      name: 'Krishna Singh',
-      email: 'singhks0054@gmail.com',
-      follower: [],
-      following: [],
-    },
   };
 
   try {
-    const { data } = await axios.get(
+    const shotData = await axios.get(
       `${process.env.API_URL}/shot/${params.shotId}`
     );
-    if (data?.data) {
-      result._id = data.data._id;
-      result.title = data.data.title;
-      result.category = data.data.category;
-      result.description = data.data.description;
-      result.tags = data.data.tags;
-      result.images = data.data.images;
-      result.owner = data.data.owner;
+    if (shotData.data?.data) {
+      result.shot._id = shotData.data.data._id;
+      result.shot.title = shotData.data.data.title;
+      result.shot.category = shotData.data.data.category;
+      result.shot.description = shotData.data.data.description;
+      result.shot.tags = shotData.data.data.tags;
+      result.shot.images = shotData.data.data.images;
+      result.shot.owner = shotData.data.data.owner;
+    }
+    const moreShotData = await axios.get(`${process.env.API_URL}/shot?limit=4`);
+    if (moreShotData.data?.data) {
+      result.moreShot = moreShotData.data.data;
     }
   } catch (error) {}
 

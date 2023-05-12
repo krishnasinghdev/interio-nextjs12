@@ -63,7 +63,7 @@ export default function Layout({ children, way }: Props): ReactElement {
                 'hover:text-primary'
               )}
             >
-              Works - 19
+              Works
             </Link>
             <Link
               href={'/profile/liked-shot'}
@@ -72,7 +72,7 @@ export default function Layout({ children, way }: Props): ReactElement {
                 'hover:text-primary'
               )}
             >
-              Liked Shots - 41
+              Liked Shots
             </Link>
             <Link
               href={'/profile/collection'}
@@ -81,7 +81,7 @@ export default function Layout({ children, way }: Props): ReactElement {
                 'hover:text-primary'
               )}
             >
-              Collections - 5
+              Collections
             </Link>
             <Link
               href={'/profile/about'}
